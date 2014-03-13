@@ -17,24 +17,33 @@ class PropelProjectGen extends Command {
         $propel['project'] = "demopropel";
         $propel['dbname'] = "demopropel";
         $propel['engine'] = "mysql";
-        $propel['host'] = "localhost";
+        $propel['host'] = "127.0.0.1";
         $propel['port'] = "3306";
         $propel['user'] = "root";
-        $propel['password'] = "54321";
+        $propel['password'] = "12345";
 
         $this->setName("propel:gen")
              ->setDescription("This console will generate basic propel skeleton")
              ->setDefinition(array(
-                      new InputOption('project', 'pr', InputOption::VALUE_OPTIONAL, 'Database Name (xond2)', $propel['project']),
-                      new InputOption('dbname', 'db', InputOption::VALUE_OPTIONAL, 'Database Name (xond2)', $propel['dbname']),
-                      new InputOption('engine', 'e', InputOption::VALUE_OPTIONAL, 'Database Engine (mysql)', $propel['engine']),
-                      new InputOption('host', 'i', InputOption::VALUE_OPTIONAL, 'Ip (localhost)', $propel['host']),
+                      new InputOption('project', 'R', InputOption::VALUE_OPTIONAL, 'Database Name (demopropel)', $propel['project']),
+                      new InputOption('dbname', 'D', InputOption::VALUE_OPTIONAL, 'Database Name (demopropel)', $propel['dbname']),
+                      new InputOption('engine', 'E', InputOption::VALUE_OPTIONAL, 'Database Engine (mysql)', $propel['engine']),
+                      new InputOption('host', 'H', InputOption::VALUE_OPTIONAL, 'Ip (localhost)', $propel['host']),
                       new InputOption('port', 'p', InputOption::VALUE_OPTIONAL, 'Database Port (3306)', $propel['port']),
-                      new InputOption('user', 'u', InputOption::VALUE_OPTIONAL, 'Database User (root)', $propel['user']),
-                      new InputOption('password', 'pw', InputOption::VALUE_OPTIONAL, 'Database Password (12345)', $propel['password'])
+                      new InputOption('user', 'U', InputOption::VALUE_OPTIONAL, 'Database User (root)', $propel['user']),
+                      new InputOption('password', 'P', InputOption::VALUE_OPTIONAL, 'Database Password (12345)', $propel['password'])
                 ))
              ->setHelp(<<<EOT
-Still empty
+Generate Propel 1.x basic project skeleton
+
+Basic Usage :
+
+<info>app/console propel:gen</info>
+
+Override setting :
+
+<info>app/console propel:gen -R "test" -D "test" -H "127.0.0.1" -U "root" -P "54321"</info>
+
 EOT
 );
     }
