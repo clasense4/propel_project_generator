@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<config>
+ <propel>
+  <datasources default="profil_pendidikan_batam">
+   <datasource id="profil_pendidikan_batam"> <!-- this ID must match <database name=""> in schema.xml -->
+    <adapter>{{ propel.engine }}</adapter> <!-- sqlite, mysql, myssql, oracle, or pgsql -->
+    <connection>
+     <!-- the PDO connection DSN for database -->
+     <dsn>{{ propel.engine }}:dbname={{ propel.dbname }};host={{ propel.host }};port={{ propel.port }}</dsn>
+     <user>{{ propel.user }}</user>
+     <password>{{ propel.password }}</password>
+     <persistent>true</persistent>
+    </connection>
+   </datasource>
+  </datasources>
+ </propel>
+</config>

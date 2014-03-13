@@ -1,0 +1,16 @@
+propel.project 		= {{ propel.project }}
+propel.php.dir      = ${propel.project.dir}/../../src/
+propel.phpconf.dir  = ${propel.project.dir}/conf/
+propel.sql.dir      = ${propel.project.dir}/sql/
+
+propel.namespace.autoPackage = true
+propel.packageObjectModel    = true
+
+propel.database = {{ propel.engine }}
+propel.database.url = {{ propel.engine }}:host={{ propel.host }};port={{ propel.port }};dbname={{ propel.dbname }};user={{ propel.user }};password={{ propel.password }}
+
+propel.database.user = {{ propel.user }}
+propel.database.password = {{ propel.password }}
+
+propel.addGenericAccessors = true # gets you toArray()
+propel.addGenericMutators = true  # gets you fromArray()

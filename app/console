@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+error_reporting(E_ALL);
+set_time_limit(0);
+date_default_timezone_set('Asia/Jakarta'); 
+
+// include the composer autoloader
+require_once __DIR__ . '/../vendor/autoload.php'; 
+
+// import the Symfony Console Application 
+use Symfony\Component\Console\Application; 
+use PropelProjectGen\PropelProjectGen;
+
+$app = new Application('Hello, this is Propel Project Generator', '0.0.0');
+$app->add(new PropelProjectGen());
+$app->run();
+?>
