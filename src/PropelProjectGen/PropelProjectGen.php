@@ -54,7 +54,7 @@ EOT
         $dialog = $this->getHelperSet()->get('dialog');
 
         // twig loader
-        $basetpl = __DIR__.'../../../app/template/';
+        $basetpl = __DIR__.'/../../app/template/';
         $loader = new \Twig_Loader_Filesystem($basetpl);
         $twig = new \Twig_Environment($loader
         // DO NOT USE CACHE
@@ -77,7 +77,7 @@ EOT
         $propel['password'] = $input->getOption('password');
 
         // create a dir
-        $basedir = __DIR__.'../../../app/config/';
+        $basedir = __DIR__.'/../../app/config/';
         if (!is_dir($basedir)){
             if (mkdir($basedir)) {
                 $output->writeln('<header>Dir created</header>');
