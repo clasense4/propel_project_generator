@@ -85,13 +85,13 @@ EOT
         }
 
         // give some output
-        $output->writeln('<header>project = '.$propel['project'].' </header>');
-        $output->writeln('<header>dbname = '.$propel['dbname'].' </header>');
-        $output->writeln('<header>Engine = '.$propel['engine'].' </header>');
-        $output->writeln('<header>Host = '.$propel['host'].' </header>');
-        $output->writeln('<header>Port = '.$propel['port'].' </header>');
-        $output->writeln('<header>User = '.$propel['user'].' </header>');
-        $output->writeln('<header>Password = '.$propel['password'].' </header>');
+        $output->writeln('project   = <header>'.$propel['project'].' </header>');
+        $output->writeln('dbname    = <header>'.$propel['dbname'].' </header>');
+        $output->writeln('Engine    = <header>'.$propel['engine'].' </header>');
+        $output->writeln('Host      = <header>'.$propel['host'].' </header>');
+        $output->writeln('Port      = <header>'.$propel['port'].' </header>');
+        $output->writeln('User      = <header>'.$propel['user'].' </header>');
+        $output->writeln('Password  = <header>'.$propel['password'].' </header>');
         // $output->writeln('<header>Current Dir  = '.__DIR__.' </header>');
 
         // let's ask, make sure the setting is right
@@ -147,7 +147,7 @@ EOT
                 $output->writeln('<header>File '.$filename.' written</header>');
             }
             fclose($fp);
-            $output->writeln('<header>Great, now you can play with propel-gen</header>');
+            $output->writeln('Great, now you can play with <header>propel-gen</header>');
         }
 
     }
