@@ -4,8 +4,10 @@ Now, you not need to create requirement file to play with propel. Everthing is f
 
 # Usage
 
-    git clone https://bitbucket.org
-    cd /path/to/propel/project/generator/
+    git clone git@bitbucket.org:znfgit/propel_project_generator.git
+    cd propel_project_generator
+    chmod u+x app/console
+    composer install -vvv --profile
     app/console propel:gen
 
 And everything is generated.

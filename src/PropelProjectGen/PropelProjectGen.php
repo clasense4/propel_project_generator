@@ -85,13 +85,13 @@ EOT
         }
 
         // give some output
-        $output->writeln('project   = <header>'.$propel['project'].' </header>');
-        $output->writeln('dbname    = <header>'.$propel['dbname'].' </header>');
-        $output->writeln('Engine    = <header>'.$propel['engine'].' </header>');
-        $output->writeln('Host      = <header>'.$propel['host'].' </header>');
-        $output->writeln('Port      = <header>'.$propel['port'].' </header>');
-        $output->writeln('User      = <header>'.$propel['user'].' </header>');
-        $output->writeln('Password  = <header>'.$propel['password'].' </header>');
+        $output->writeln('project   = <header>'.$propel['project'].'</header>');
+        $output->writeln('dbname    = <header>'.$propel['dbname'].'</header>');
+        $output->writeln('Engine    = <header>'.$propel['engine'].'</header>');
+        $output->writeln('Host      = <header>'.$propel['host'].'</header>');
+        $output->writeln('Port      = <header>'.$propel['port'].'</header>');
+        $output->writeln('User      = <header>'.$propel['user'].'</header>');
+        $output->writeln('Password  = <header>'.$propel['password'].'</header>');
         // $output->writeln('<header>Current Dir  = '.__DIR__.' </header>');
 
         // let's ask, make sure the setting is right
