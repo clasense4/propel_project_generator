@@ -4,7 +4,7 @@ Now, you not need to create requirement file to play with propel. Everthing is f
 
 # Usage
 
-    git clone git@bitbucket.org:znfgit/propel_project_generator.git
+    git clone git@github.com:clasense4/propel_project_generator.git
     cd propel_project_generator
     chmod u+x app/console
     composer install -vvv --profile
