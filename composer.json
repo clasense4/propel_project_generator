@@ -1,10 +1,11 @@
 {
-    "name": "phpmaster/console_demo",
-    "description": "PhpMaster.com symfony/console tutorial",
+    "name": "clasense4/propel_project_generator",
+    "description": "clasense4 propel project generator",
     "require": {
         "php": ">=5.3.3",
         "symfony/console": "2.4.x-dev",
-        "twig/twig": ">=1.8,<2.0-dev"
+        "twig/twig": ">=1.8,<2.0-dev",
+        "propel/propel1": "~1.7"
     },
     "autoload": {
         "psr-0": {
