@@ -9,7 +9,33 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 
-class PropelProjectGen extends Command {
+class PropelProjectGen extends Command 
+{
+    /**
+     * Render a file
+     * @param  [string] $twigname [twig filename]
+     * @param  [string] $path     [path from project root ex. app/config/ ]
+     * @param  [string] $filename [output filename ex. test.twig]
+     * @param  [array] $propel   [array to pass into twig]
+     * @param  [Twig Class] $twig     [Twig Class]
+     * @param  [OutputInterface] $output   [Symfony Console Output Interface]
+     * @return [OutputInterface]           [Write output interface]
+     */
+    public function render($twigname, $path, $filename, $propel, $twig, $output)
+    {
+        // lets write the file
+        $project_dir = __DIR__.'/../../';
+        $string = $twig->render($twigname, array('propel' => $propel));
+        $file = $project_dir.$path.$filename;
+
+        if (FALSE == ($fp = fopen($file, 'w'))) {
+            $output->writeln('<header>File '.$file.' failed to open</header>');
+        }
+        if (fwrite($fp, $string)) {
+            $output->writeln('<header>File '.$file.' written</header>');
+        }
+        fclose($fp);
+    }
 
     protected function configure()
     {
@@ -25,13 +51,13 @@ class PropelProjectGen extends Command {
         $this->setName("propel:gen")
              ->setDescription("This console will generate basic propel skeleton")
              ->setDefinition(array(
-                      new InputOption('project', 'R', InputOption::VALUE_OPTIONAL, 'Database Name (demopropel)', $propel['project']),
+                      new InputOption('project', 'P', InputOption::VALUE_OPTIONAL, 'Database Name (demopropel)', $propel['project']),
                       new InputOption('dbname', 'D', InputOption::VALUE_OPTIONAL, 'Database Name (demopropel)', $propel['dbname']),
                       new InputOption('engine', 'E', InputOption::VALUE_OPTIONAL, 'Database Engine (mysql)', $propel['engine']),
                       new InputOption('host', 'H', InputOption::VALUE_OPTIONAL, 'Ip (localhost)', $propel['host']),
-                      new InputOption('port', 'p', InputOption::VALUE_OPTIONAL, 'Database Port (3306)', $propel['port']),
+                      new InputOption('port', 'r', InputOption::VALUE_OPTIONAL, 'Database Port (3306)', $propel['port']),
                       new InputOption('user', 'U', InputOption::VALUE_OPTIONAL, 'Database User (root)', $propel['user']),
-                      new InputOption('password', 'P', InputOption::VALUE_OPTIONAL, 'Database Password (12345)', $propel['password'])
+                      new InputOption('password', 'p', InputOption::VALUE_OPTIONAL, 'Database Password (12345)', $propel['password']),
                 ))
              ->setHelp(<<<EOT
 Generate Propel 1.x basic project skeleton
@@ -42,7 +68,7 @@ Basic Usage :
 
 Override setting :
 
-<info>app/console propel:gen -R "test" -D "test" -H "127.0.0.1" -U "root" -P "54321"</info>
+<info>app/console propel:gen -P 'test' -D 'test' -H '127.0.0.1' -U 'root' -P '54321'</info>
 
 EOT
 );
@@ -102,29 +128,15 @@ EOT
         );
 
         if ($ask == 'y' ) {
-            // lets write the file
-            $string = $twig->render('build.properties.twig', array('propel' => $propel));
-            $filename = $basedir.'build.properties';
-            $fp = fopen($filename, 'w');
-            if (!$fp) {
-                $output->writeln('<header>File '.$filename.' failed to open</header>');
-            }
-            if (fwrite($fp, $string)) {
-                $output->writeln('<header>File '.$filename.' written</header>');
-            }
-            fclose($fp);
+            // write build.properties
+            $this->render('build.properties.twig', 'app/config/', 'build.properties', $propel, $twig, $output);
 
-            // lets write the file
-            $string = $twig->render('runtime-conf.xml.twig', array('propel' => $propel));
-            $filename = $basedir.'runtime-conf.xml';
-            $fp = fopen($filename, 'w');
-            if (!$fp) {
-                $output->writeln('<header>File '.$filename.' failed to open</header>');
-            }
-            if (fwrite($fp, $string)) {
-                $output->writeln('<header>File '.$filename.' written</header>');
-            }
-            fclose($fp);
+            //write runtime-conf.xml
+            $this->render('runtime-conf.xml.twig', 'app/config/', 'runtime-conf.xml', $propel, $twig, $output);
+
+        }
+        else {
+            exit;
         }
 
 
@@ -136,19 +148,16 @@ EOT
         );
 
         if ($bundle == 'y') {
-            // lets write the file
-            $string = $twig->render('schema.xml.twig', array('propel' => $propel));
-            $filename = $basedir.'schema.xml';
-            $fp = fopen($filename, 'w');
-            if (!$fp) {
-                $output->writeln('<header>File '.$filename.' failed to open</header>');
-            }
-            if (fwrite($fp, $string)) {
-                $output->writeln('<header>File '.$filename.' written</header>');
-            }
-            fclose($fp);
+            // write dummy schema.xml
+            $this->render('schema.xml.twig', 'app/config/', 'schema.xml', $propel, $twig, $output);
+            // some info
             $output->writeln('Great, now you can play with <header>propel-gen</header>');
         }
+        else {
+            exit;
+        }
 
+        // some info
+        $output->writeln('After you have <header>schema.xml</header> you can use <header>propel-gen</header>');
     }
 }
